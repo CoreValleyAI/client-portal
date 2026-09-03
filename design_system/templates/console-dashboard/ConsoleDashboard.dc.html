@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Console Dashboard" description="Corevalley GPU console — sidebar, header, stat cards and an instances table. Edit rows and copy in place." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>
+  @keyframes cvBlink { 50% { opacity: 0; } }
+  html, body { margin: 0; background: #05080D; }
+</style>
+</helmet>
+<div style="display: flex; height: 100vh; font-family: var(--font-body); background: var(--carbon-900); color: var(--ink-200);">
+
+  <!-- sidebar -->
+  <aside style="width: 232px; flex: none; background: var(--carbon-800); border-right: 1px solid var(--border-default); display: flex; flex-direction: column; padding: 18px 14px;">
+    <div style="padding: 4px 8px 20px; display: flex; align-items: center; gap: 8px;">
+      <img src="../../assets/logo/cv-brandmark.svg" alt="" style="height: 24px; display: block;">
+      <img src="../../assets/logo/cv-wordmark-green.svg" alt="corevalley" style="height: 15px; display: block;">
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 2px; font-family: var(--font-mono); font-size: 13px;">
+      <div style="display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: var(--radius-md); color: var(--hydro); background: rgba(74,222,128,0.10); border: 1px solid var(--border-hydro);">overview</div>
+      <div style="display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: var(--radius-md); color: var(--ink-400);">instances</div>
+      <div style="display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: var(--radius-md); color: var(--ink-400);">storage</div>
+      <div style="display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: var(--radius-md); color: var(--ink-400);">regions</div>
+      <div style="display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: var(--radius-md); color: var(--ink-400);">usage</div>
+      <div style="display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: var(--radius-md); color: var(--ink-400);">settings</div>
+    </nav>
+    <div style="margin-top: auto;">
+      <div style="background: var(--carbon-700); border: 1px solid var(--border-default); border-radius: var(--radius-md); padding: 13px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-300);">hydro grid</span>
+          <span style="margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; font-weight: 500; text-transform: uppercase; color: var(--hydro); background: rgba(74,222,128,0.10); border: 1px solid var(--border-hydro); border-radius: var(--radius-pill); padding: 2px 8px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: var(--hydro); box-shadow: 0 0 6px var(--hydro);"></span>live</span>
+        </div>
+        <div style="font-family: var(--font-body); font-weight: 300; font-size: 11.5px; color: var(--ink-500);">3 regions online · 0g CO₂ this cycle</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- main -->
+  <div style="flex: 1; display: flex; flex-direction: column; min-width: 0;">
+    <!-- header -->
+    <header style="display: flex; align-items: center; gap: 16px; padding: 14px 24px; border-bottom: 1px solid var(--border-default);">
+      <h1 style="font-family: var(--font-mono); font-weight: 500; font-size: 16px; color: var(--ink-100); margin: 0;">overview</h1>
+      <div style="margin-left: auto;"></div>
+      <x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.Button" variant="primary" size="sm" mono="{{ true }}" hint-size="100px,30px">deploy</x-import>
+      <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--carbon-500); border: 1px solid var(--border-default); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12px; color: var(--hydro);">cv</div>
+    </header>
+
+    <!-- body -->
+    <div style="flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 18px;">
+      <!-- stat cards -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+        <div style="background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 20px;"><x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.StatBlock" value="2 / 3" label="instances running" size="sm" hint-size="120px,70px"></x-import></div>
+        <div style="background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 20px;"><x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.StatBlock" value="22×" label="GPUs allocated" size="sm" hint-size="120px,70px"></x-import></div>
+        <div style="background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 20px;"><x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.StatBlock" value="~0g" label="CO₂ this cycle" size="sm" accent="{{ true }}" hint-size="120px,70px"></x-import></div>
+        <div style="background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 20px;"><x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.StatBlock" value="$576" label="spend MTD" size="sm" hint-size="120px,70px"></x-import></div>
+      </div>
+
+      <!-- instances table -->
+      <div style="background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); overflow: hidden;">
+        <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 0.9fr 0.9fr; padding: 12px 18px; border-bottom: 1px solid var(--border-default); font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);">
+          <span>name</span><span>gpu</span><span>region</span><span>status</span><span>uptime</span><span>cost</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 0.9fr 0.9fr; align-items: center; padding: 14px 18px;">
+          <div><div style="font-family: var(--font-mono); font-size: 13px; color: var(--ink-100);">llama-ft-run</div><div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-600); margin-top: 2px;">cv-9f3a21</div></div>
+          <span style="font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-300);">8× H200</span>
+          <span style="font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-400);">np-ktm-1</span>
+          <span style="display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 12px; color: var(--hydro);"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--hydro); box-shadow: 0 0 7px var(--hydro);"></span>running</span>
+          <span style="font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-400);">4d 02h</span>
+          <span style="font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-200);">$402.10</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 0.9fr 0.9fr; align-items: center; padding: 14px 18px; border-top: 1px solid var(--border-subtle);">
+          <div><div style="font-family: var(--font-mono); font-size: 13px; color: var(--ink-100);">mixtral-batch</div><div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-600); margin-top: 2px;">cv-7b1c40</div></div>
+          <span style="font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-300);">4× H100</span>
+          <span style="font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-400);">np-pkr-1</span>
+          <span style="display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 12px; color: var(--hydro);"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--hydro); box-shadow: 0 0 7px var(--hydro);"></span>running</span>
+          <span style="font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-400);">11h 20m</span>
+          <span style="font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-200);">$84.40</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 0.9fr 0.9fr; align-items: center; padding: 14px 18px; border-top: 1px solid var(--border-subtle);">
+          <div><div style="font-family: var(--font-mono); font-size: 13px; color: var(--ink-100);">sd-finetune</div><div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-600); margin-top: 2px;">cv-1e5f09</div></div>
+          <span style="font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-300);">1× A100</span>
+          <span style="font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-400);">np-brt-1</span>
+          <span style="display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 12px; color: var(--info);"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--info);"></span>queued</span>
+          <span style="font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-400);">—</span>
+          <span style="font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-200);">$0.00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

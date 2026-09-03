@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Brand Overview Deck" description="9-slide Corevalley brand overview — cover, problem, premise, stats, offering, pillars, regions, system, close. 1920×1080." -->
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>html,body{margin:0;background:#05080D}</style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="../../deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+  <section data-label="Cover" style="position:relative;width:100%;height:100%;box-sizing:border-box;background:#05080D;padding:108px 120px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+    <img src="../../assets/ridgeline.svg" alt="" style="position:absolute;left:0;bottom:0;width:100%;height:auto;opacity:0.5;pointer-events:none;">
+    <div style="position:relative;display:flex;align-items:center;gap:14px;">
+      <img src="../../assets/logo/cv-brandmark.svg" alt="" style="height:48px;display:block;">
+      <img src="../../assets/logo/cv-wordmark-green.svg" alt="corevalley" style="height:29px;display:block;">
+    </div>
+    <div style="position:relative;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:#4ADE80;margin-bottom:32px;">Brand Overview · v1.0</div>
+      <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:122px;line-height:0.98;letter-spacing:-0.035em;color:#F7F9FA;margin:0;max-width:1320px;text-wrap:balance;">Compute that runs on rivers, <span style="color:#4ADE80;">not coal.</span></h1>
+    </div>
+    <div style="position:relative;font-family:'JetBrains Mono',monospace;font-size:21px;color:#6B7280;letter-spacing:0.04em;">Hydro-powered GPU &amp; AI compute infrastructure · Himalaya → South Asia</div>
+  </section>
+
+  <section data-label="The problem" style="position:relative;width:100%;height:100%;box-sizing:border-box;background:#05080D;padding:120px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#4ADE80;margin-bottom:40px;">01 · The problem</div>
+    <div style="display:flex;gap:100px;align-items:flex-start;">
+      <h2 style="flex:1;font-family:'Manrope',sans-serif;font-weight:700;font-size:78px;line-height:1.04;letter-spacing:-0.03em;color:#F7F9FA;margin:0;max-width:980px;">The AI buildout has run into a <span style="color:#4ADE80;">power problem.</span></h2>
+      <div style="width:520px;flex:none;padding-top:14px;">
+        <p style="font-family:'Manrope',sans-serif;font-weight:300;font-size:26px;line-height:1.62;color:#C2C8CF;margin:0 0 40px;">Most compute runs on fossil-heavy grids — at rising cost, rising carbon, and rising scrutiny. Power, not silicon, is becoming the binding constraint on scale.</p>
+        <div style="border-left:2px solid rgba(74,222,128,0.35);padding-left:24px;display:flex;flex-direction:column;gap:20px;">
+          <div><div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:46px;color:#F87171;line-height:1;">↑ cost</div><div style="font-family:'JetBrains Mono',monospace;font-size:16px;color:#6B7280;margin-top:8px;letter-spacing:0.04em;">fossil grid pricing</div></div>
+          <div><div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:46px;color:#FBBF24;line-height:1;">↑ carbon</div><div style="font-family:'JetBrains Mono',monospace;font-size:16px;color:#6B7280;margin-top:8px;letter-spacing:0.04em;">per unit of compute</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="The premise" style="position:relative;width:100%;height:100%;box-sizing:border-box;background:#080C13;padding:120px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;">
+    <img src="../../assets/ridgeline.svg" alt="" style="position:absolute;left:0;bottom:0;width:100%;height:auto;opacity:0.32;pointer-events:none;">
+    <div style="position:relative;font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#4ADE80;margin-bottom:40px;">02 · The premise</div>
+    <h2 style="position:relative;font-family:'Manrope',sans-serif;font-weight:700;font-size:84px;line-height:1.02;letter-spacing:-0.03em;color:#F7F9FA;margin:0 0 44px;max-width:1400px;">We start from the <span style="color:#4ADE80;">opposite premise.</span></h2>
+    <p style="position:relative;font-family:'Manrope',sans-serif;font-weight:300;font-size:32px;line-height:1.58;color:#C2C8CF;margin:0;max-width:1180px;">Abundant, cheap, clean hydroelectric energy in the Himalayas — wired directly into the AI economies of South Asia. Compute built on the river, at the edge of the world's fastest-growing AI markets.</p>
+  </section>
+
+  <section data-label="At a glance" style="position:relative;width:100%;height:100%;box-sizing:border-box;background:#05080D;padding:120px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#4ADE80;margin-bottom:64px;">03 · At a glance</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(232,236,239,0.12);border-bottom:1px solid rgba(232,236,239,0.12);">
+      <div style="padding:52px 40px 52px 0;border-right:1px solid rgba(232,236,239,0.12);">
+        <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:88px;line-height:1;color:#4ADE80;letter-spacing:-0.03em;">~$0.04</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:18px;color:#6B7280;margin-top:18px;letter-spacing:0.04em;">per kWh hydro power</div>
+      </div>
+      <div style="padding:52px 40px;border-right:1px solid rgba(232,236,239,0.12);">
+        <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:88px;line-height:1;color:#F7F9FA;letter-spacing:-0.03em;">~0g</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:18px;color:#6B7280;margin-top:18px;letter-spacing:0.04em;">carbon per compute</div>
+      </div>
+      <div style="padding:52px 40px;border-right:1px solid rgba(232,236,239,0.12);">
+        <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:88px;line-height:1;color:#F7F9FA;letter-spacing:-0.03em;">~40ms</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:18px;color:#6B7280;margin-top:18px;letter-spacing:0.04em;">latency to Mumbai</div>
+      </div>
+      <div style="padding:52px 0 52px 40px;">
+        <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:88px;line-height:1;color:#F7F9FA;letter-spacing:-0.03em;">3</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:18px;color:#6B7280;margin-top:18px;letter-spacing:0.04em;">himalayan regions</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="What we are" style="position:relative;width:100%;height:100%;box-sizing:border-box;background:#05080D;padding:120px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#4ADE80;margin-bottom:40px;">04 · What we are</div>
+    <div style="display:flex;gap:90px;align-items:center;">
+      <div style="flex:1;">
+        <h2 style="font-family:'Manrope',sans-serif;font-weight:700;font-size:72px;line-height:1.05;letter-spacing:-0.03em;color:#F7F9FA;margin:0 0 28px;max-width:900px;">GPU-as-a-Service &amp; AI compute infrastructure.</h2>
+        <p style="font-family:'Manrope',sans-serif;font-weight:300;font-size:30px;line-height:1.5;color:#C2C8CF;margin:0;">A platform, not a storefront. Built for training, fine-tuning, and batch / async pipelines — where green energy and cost win.</p>
+      </div>
+      <div style="width:620px;flex:none;background:#0B0F17;border:1px solid rgba(232,236,239,0.12);border-radius:8px;overflow:hidden;font-family:'JetBrains Mono',monospace;">
+        <div style="display:flex;align-items:center;gap:8px;padding:18px 22px;border-bottom:1px solid rgba(232,236,239,0.12);">
+          <span style="width:11px;height:11px;border-radius:50%;background:#2A2F38;"></span>
+          <span style="width:11px;height:11px;border-radius:50%;background:#2A2F38;"></span>
+          <span style="width:11px;height:11px;border-radius:50%;background:#2A2F38;"></span>
+          <span style="margin-left:10px;font-size:16px;color:#6B7280;">np-ktm-1.corevalley.ai</span>
+        </div>
+        <div style="padding:26px 24px;font-size:21px;line-height:2.0;">
+          <div style="color:#E8ECEF;"><span style="color:#4ADE80;margin-right:10px;">$</span>corevalley deploy --gpu h200 --count 8</div>
+          <div style="color:#9AA2AD;">→ matched hydro grid · Upper Tamakoshi</div>
+          <div style="color:#9AA2AD;">→ 8× H200 · ~40ms → mumbai · 0g CO₂ · $0.04/kWh</div>
+          <div style="color:#6B7280;"># instance cv-9f3a21 live in 12s</div>
+          <div style="color:#E8ECEF;"><span style="color:#4ADE80;margin-right:10px;">$</span><span style="display:inline-block;width:13px;height:25px;background:#4ADE80;vertical-align:middle;"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Why corevalley" style="position:relative;width:100%;height:100%;box-sizing:border-box;background:#080C13;padding:120px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#4ADE80;margin-bottom:24px;">05 · Why corevalley</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:700;font-size:56px;line-height:1.05;letter-spacing:-0.03em;color:#F7F9FA;margin:0 0 56px;max-width:1100px;">A structural ESG advantage against fossil-powered grids.</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+      <div style="background:#0B0F17;border:1px solid rgba(232,236,239,0.12);border-radius:8px;padding:36px 32px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#4ADE80;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:22px;">01</div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:30px;color:#F7F9FA;margin-bottom:14px;letter-spacing:-0.02em;">Near-zero carbon</div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:300;font-size:20px;line-height:1.55;color:#9AA2AD;">Hydroelectric by default. ~0g CO₂ per unit of compute.</div>
+      </div>
+      <div style="background:#0B0F17;border:1px solid rgba(232,236,239,0.12);border-radius:8px;padding:36px 32px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#4ADE80;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:22px;">02</div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:30px;color:#F7F9FA;margin-bottom:14px;letter-spacing:-0.02em;">Low cost</div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:300;font-size:20px;line-height:1.55;color:#9AA2AD;">~$0.04/kWh power flows straight through to compute pricing.</div>
+      </div>
+      <div style="background:#0B0F17;border:1px solid rgba(232,236,239,0.12);border-radius:8px;padding:36px 32px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#4ADE80;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:22px;">03</div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:30px;color:#F7F9FA;margin-bottom:14px;letter-spacing:-0.02em;">Edge latency</div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:300;font-size:20px;line-height:1.55;color:#9AA2AD;">~40ms to Mumbai — at the doorstep of South Asia's AI markets.</div>
+      </div>
+      <div style="background:#0B0F17;border:1px solid rgba(232,236,239,0.12);border-radius:8px;padding:36px 32px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#4ADE80;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:22px;">04</div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:30px;color:#F7F9FA;margin-bottom:14px;letter-spacing:-0.02em;">Heavy jobs</div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:300;font-size:20px;line-height:1.55;color:#9AA2AD;">Tuned for training, fine-tuning and batch / async pipelines.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Regions" style="position:relative;width:100%;height:100%;box-sizing:border-box;background:#05080D;padding:120px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#4ADE80;margin-bottom:24px;">06 · Regions</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:700;font-size:56px;line-height:1.05;letter-spacing:-0.03em;color:#F7F9FA;margin:0 0 52px;">Three Himalayan hydro regions.</h2>
+    <div style="display:flex;flex-direction:column;font-family:'JetBrains Mono',monospace;">
+      <div style="display:grid;grid-template-columns:1.1fr 1.4fr 1fr 0.8fr;gap:24px;padding:0 0 18px;font-size:16px;color:#6B7280;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid rgba(232,236,239,0.12);">
+        <span>Region</span><span>Hydro source</span><span>Latency</span><span>Power</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.1fr 1.4fr 1fr 0.8fr;gap:24px;padding:30px 0;align-items:center;border-bottom:1px solid rgba(232,236,239,0.07);">
+        <span style="font-size:28px;color:#4ADE80;font-weight:500;">np-ktm-1</span><span style="font-size:25px;color:#E8ECEF;">Upper Tamakoshi</span><span style="font-size:25px;color:#C2C8CF;">~40ms · Mumbai</span><span style="font-size:25px;color:#C2C8CF;">$0.04/kWh</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.1fr 1.4fr 1fr 0.8fr;gap:24px;padding:30px 0;align-items:center;border-bottom:1px solid rgba(232,236,239,0.07);">
+        <span style="font-size:28px;color:#4ADE80;font-weight:500;">np-pkr-1</span><span style="font-size:25px;color:#E8ECEF;">Marsyangdi</span><span style="font-size:25px;color:#C2C8CF;">~46ms · Mumbai</span><span style="font-size:25px;color:#C2C8CF;">$0.04/kWh</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.1fr 1.4fr 1fr 0.8fr;gap:24px;padding:30px 0;align-items:center;border-bottom:1px solid rgba(232,236,239,0.07);">
+        <span style="font-size:28px;color:#4ADE80;font-weight:500;">np-brt-1</span><span style="font-size:25px;color:#E8ECEF;">Bhote Koshi</span><span style="font-size:25px;color:#C2C8CF;">~52ms · Delhi</span><span style="font-size:25px;color:#C2C8CF;">$0.05/kWh</span>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="The system" style="position:relative;width:100%;height:100%;box-sizing:border-box;background:#080C13;padding:120px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#4ADE80;margin-bottom:56px;">07 · The system</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:16px;color:#6B7280;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:26px;">Color</div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:center;gap:16px;"><span style="width:52px;height:52px;border-radius:6px;background:#4ADE80;flex:none;"></span><span style="font-family:'JetBrains Mono',monospace;font-size:19px;color:#C2C8CF;">Hydro · #4ADE80</span></div>
+          <div style="display:flex;align-items:center;gap:16px;"><span style="width:52px;height:52px;border-radius:6px;background:#05080D;border:1px solid rgba(232,236,239,0.2);flex:none;"></span><span style="font-family:'JetBrains Mono',monospace;font-size:19px;color:#C2C8CF;">Carbon · #05080D</span></div>
+          <div style="display:flex;align-items:center;gap:16px;"><span style="width:52px;height:52px;border-radius:6px;background:#E8ECEF;flex:none;"></span><span style="font-family:'JetBrains Mono',monospace;font-size:19px;color:#C2C8CF;">Ink · #E8ECEF</span></div>
+          <div style="display:flex;align-items:center;gap:16px;"><span style="width:52px;height:52px;border-radius:6px;background:#6B7280;flex:none;"></span><span style="font-family:'JetBrains Mono',monospace;font-size:19px;color:#C2C8CF;">Mute · #6B7280</span></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:16px;color:#6B7280;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:26px;">Type</div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:58px;color:#F7F9FA;line-height:1;letter-spacing:-0.03em;">Manrope</div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:300;font-size:22px;color:#9AA2AD;margin-top:10px;margin-bottom:36px;">Headlines &amp; body — 300–800</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:46px;color:#4ADE80;line-height:1;">JetBrains Mono</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:19px;color:#9AA2AD;margin-top:12px;">code · data · labels · the logo</div>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:16px;color:#6B7280;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:26px;">Logo</div>
+        <div style="background:#05080D;border:1px solid rgba(232,236,239,0.12);border-radius:8px;padding:48px;display:flex;align-items:center;justify-content:center;">
+          <img src="../../assets/logo/cv-combinedmark-green.svg" alt="corevalley" style="height:150px;">
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:17px;color:#9AA2AD;margin-top:20px;line-height:1.6;">Green on Carbon · gradient cloud / CV mark + green wordmark</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Close" style="position:relative;width:100%;height:100%;box-sizing:border-box;background:#05080D;padding:120px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;overflow:hidden;">
+    <img src="../../assets/ridgeline.svg" alt="" style="position:absolute;left:0;bottom:0;width:100%;height:auto;opacity:0.5;pointer-events:none;">
+    <div style="position:relative;display:flex;align-items:center;gap:16px;margin-bottom:56px;">
+      <img src="../../assets/logo/cv-brandmark.svg" alt="" style="height:64px;display:block;">
+      <img src="../../assets/logo/cv-wordmark-green.svg" alt="corevalley" style="height:38px;display:block;">
+    </div>
+    <h2 style="position:relative;font-family:'Manrope',sans-serif;font-weight:800;font-size:96px;line-height:1.0;letter-spacing:-0.035em;color:#F7F9FA;margin:0 0 48px;max-width:1300px;">Compute that runs on rivers, <span style="color:#4ADE80;">not coal.</span></h2>
+    <div style="position:relative;display:flex;align-items:center;gap:28px;font-family:'JetBrains Mono',monospace;font-size:24px;">
+      <span style="background:#4ADE80;color:#05080D;font-weight:500;padding:16px 30px;border-radius:6px;">get access →</span>
+      <span style="color:#6B7280;letter-spacing:0.04em;">corevalley.ai</span>
+    </div>
+  </section>
+
+</x-import>
+</x-dc>
+</body>
+</html>

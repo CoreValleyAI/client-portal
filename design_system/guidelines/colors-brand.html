@@ -1,0 +1,28 @@
+<!-- @dsCard group="Colors" viewport="700x190" name="Brand palette" subtitle="The five-token core: Carbon grounds, Hydro signals" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--carbon-900);padding:22px;font-family:var(--font-mono)}
+  .row{display:flex;gap:14px}
+  .sw{flex:1;border-radius:var(--radius-md);border:1px solid var(--border-subtle);overflow:hidden}
+  .chip{height:70px}
+  .meta{padding:10px 12px}
+  .nm{font-size:12px;font-weight:500;color:var(--ink-200);letter-spacing:.02em}
+  .hex{font-size:11px;color:var(--mute);margin-top:3px;text-transform:uppercase}
+  .role{font-size:10px;color:var(--ink-400);margin-top:6px;font-family:var(--font-body);font-weight:300}
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:#4ADE80"></div><div class="meta"><div class="nm">Hydro</div><div class="hex">#4ADE80</div><div class="role">accent · action</div></div></div>
+    <div class="sw"><div class="chip" style="background:#16A34A"></div><div class="meta"><div class="nm">Hydro Dark</div><div class="hex">#16A34A</div><div class="role">hover · pressed</div></div></div>
+    <div class="sw"><div class="chip" style="background:#05080D;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)"></div><div class="meta"><div class="nm">Carbon</div><div class="hex">#05080D</div><div class="role">ground</div></div></div>
+    <div class="sw"><div class="chip" style="background:#E8ECEF"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#E8ECEF</div><div class="role">primary text</div></div></div>
+    <div class="sw"><div class="chip" style="background:#6B7280"></div><div class="meta"><div class="nm">Mute</div><div class="hex">#6B7280</div><div class="role">secondary text</div></div></div>
+  </div>
+</body>
+</html>

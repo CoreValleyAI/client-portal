@@ -1,0 +1,65 @@
+/* ── Corevalley spacing, radii, shadows, motion ──────────────────────────
+   A restrained, technical system. Corners are tight (infra/terminal feel),
+   shadows are deep on carbon, and the only "glow" is Hydro green. */
+
+:root {
+  /* ── Spacing scale (4px base) ─────────────────────────── */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* ── Radii — tight, terminal-leaning ──────────────────── */
+  --radius-none: 0;
+  --radius-xs:  2px;
+  --radius-sm:  4px;
+  --radius-md:  6px;
+  --radius-lg:  10px;
+  --radius-xl:  14px;
+  --radius-2xl: 20px;
+  --radius-pill: 999px;
+
+  /* ── Borders ──────────────────────────────────────────── */
+  --border-width: 1px;
+  --border-width-thick: 1.5px;
+
+  /* ── Shadows on carbon (deep, low-spread) ─────────────── */
+  --shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.6);
+  --shadow-md:  0 4px 16px rgba(0, 0, 0, 0.55);
+  --shadow-lg:  0 12px 40px rgba(0, 0, 0, 0.6);
+  --shadow-xl:  0 24px 70px rgba(0, 0, 0, 0.7);
+
+  /* ── Hydro glow — for cursors, focus, hero accents ────── */
+  --glow-hydro-sm: 0 0 8px rgba(74, 222, 128, 0.35);
+  --glow-hydro-md: 0 0 20px rgba(74, 222, 128, 0.40);
+  --glow-hydro-lg: 0 0 48px rgba(74, 222, 128, 0.35);
+
+  /* ── Focus ring ───────────────────────────────────────── */
+  --ring-width: 2px;
+  --ring-offset: 2px;
+
+  /* ── Motion — measured, mechanical, no bounce ─────────── */
+  --ease-standard: cubic-bezier(0.2, 0, 0.2, 1); /* @kind other */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --ease-in:       cubic-bezier(0.4, 0, 1, 1); /* @kind other */
+  --duration-fast:   120ms; /* @kind other */
+  --duration-normal: 200ms; /* @kind other */
+  --duration-slow:   360ms; /* @kind other */
+  --cursor-blink:    1s;   /* @kind other */ /* terminal cursor blink interval */
+
+  /* ── Layout ───────────────────────────────────────────── */
+  --container-sm:  640px;
+  --container-md:  960px;
+  --container-lg:  1200px;
+  --container-xl:  1400px;
+}

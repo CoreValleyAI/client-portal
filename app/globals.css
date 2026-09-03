@@ -1,0 +1,413 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   CoreValley — Tailwind v4 <-> design_system bridge.
+
+   design_system/tokens/*.css is the SINGLE SOURCE OF TRUTH for every value.
+   Nothing in this file restates a number that already lives there.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* 1 — Tailwind first. It declares @layer theme, base, components, utilities.
+       source(none) disables filesystem auto-detection so design_system/ and
+       reference/ are never scanned for class names. */
+@import "tailwindcss" source(none);
+
+/* 2 — Design-system tokens into layer(theme) AFTER Tailwind, so same-named
+       tokens (--text-*, --radius-*, --shadow-*, --leading-*, --tracking-*,
+       --font-mono, --ease-*) win by source order. tokens/fonts.css is
+       deliberately NOT imported: next/font replaces that Google CDN @import. */
+@import "../design_system/tokens/colors.css" layer(theme);
+@import "../design_system/tokens/typography.css" layer(theme);
+@import "../design_system/tokens/spacing.css" layer(theme);
+
+/* 3 — Element defaults into layer(base) so utilities still beat the
+       body/anchor/heading rules. Importing this unlayered would make it beat
+       every utility — a silent and expensive failure. */
+@import "../design_system/tokens/base.css" layer(base);
+
+/* 4 — Explicit class sources. */
+@source "../app";
+@source "../components";
+@source "../lib";
+
+/* ── next/font rebinding ───────────────────────────────────────────────────
+   next/font emits a build-hashed family name (__Manrope_a1b2c3), so the
+   literal 'Manrope' in tokens/typography.css would never match a loaded face
+   and the page would silently render in the fallback. Unlayered so it beats
+   layer(theme). Verify: getComputedStyle(document.body).fontFamily. */
+:root {
+  --font-body: var(--font-manrope);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+/* ══ THEME BRIDGE ══════════════════════════════════════════════════════════
+   `inline` makes Tailwind substitute the value text straight into utilities
+   instead of emitting a duplicate custom property. Every entry is a var()
+   reference back to the design system. */
+@theme inline {
+  /* ── Hydro (accent / action) ─────────────────────────── */
+  --color-hydro: var(--hydro);
+  --color-hydro-dark: var(--hydro-dark);
+  --color-hydro-100: var(--hydro-100);
+  --color-hydro-200: var(--hydro-200);
+  --color-hydro-300: var(--hydro-300);
+  --color-hydro-400: var(--hydro-400);
+  --color-hydro-500: var(--hydro-500);
+  --color-hydro-600: var(--hydro-600);
+  --color-hydro-700: var(--hydro-700);
+  --color-hydro-800: var(--hydro-800);
+  --color-hydro-900: var(--hydro-900);
+
+  /* ── Carbon (ground / elevations) ────────────────────── */
+  --color-carbon: var(--carbon);
+  --color-carbon-400: var(--carbon-400);
+  --color-carbon-500: var(--carbon-500);
+  --color-carbon-600: var(--carbon-600);
+  --color-carbon-700: var(--carbon-700);
+  --color-carbon-800: var(--carbon-800);
+  --color-carbon-900: var(--carbon-900);
+
+  /* ── Ink (text ramp) ─────────────────────────────────── */
+  --color-ink: var(--ink);
+  --color-ink-100: var(--ink-100);
+  --color-ink-200: var(--ink-200);
+  --color-ink-300: var(--ink-300);
+  --color-ink-400: var(--ink-400);
+  --color-ink-500: var(--ink-500);
+  --color-ink-600: var(--ink-600);
+  --color-ink-700: var(--ink-700);
+  --color-mute: var(--mute);
+
+  /* ── Hairlines. Tailwind has no --border-* namespace; border colours come
+        from --color-*. Namespaced "line" so border-line-strong reads well and
+        bg-line-* never looks like a surface token. */
+  --color-line-subtle: var(--border-subtle);
+  --color-line: var(--border-default);
+  --color-line-strong: var(--border-strong);
+  --color-line-hydro: var(--border-hydro);
+
+  /* ── Status ──────────────────────────────────────────── */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  /* ── Semantic surfaces ───────────────────────────────── */
+  --color-bg-base: var(--bg-base);
+  --color-bg-sunken: var(--bg-sunken);
+  --color-surface-card: var(--surface-card);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-input: var(--surface-input);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-active: var(--surface-active);
+
+  /* ── Text roles are fg-*, NOT text-*: --color-text-muted would generate
+        the class "text-text-muted". */
+  --color-fg: var(--text-primary);
+  --color-fg-secondary: var(--text-secondary);
+  --color-fg-muted: var(--text-muted);
+  --color-fg-accent: var(--text-accent);
+  --color-on-hydro: var(--text-on-hydro);
+
+  --color-action: var(--action);
+  --color-action-hover: var(--action-hover);
+  --color-action-press: var(--action-press);
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
+
+  /* ── Spacing: one multiplier drives the whole dynamic scale.
+        p-1=4 · p-4=16 · h-9.5=38 · p-24=96 — and the fractional steps the
+        design-system scale omits come free. */
+  --spacing: var(--space-1);
+
+  /* ── Fonts. --font-mono is NOT redeclared here (the design system owns that
+        exact name; a self-reference would be a cycle). */
+  --font-sans: var(--font-body);
+
+  /* ── Glow: the design system calls these --glow-*, Tailwind's namespace
+        is --shadow-*. */
+  --shadow-glow-sm: var(--glow-hydro-sm);
+  --shadow-glow-md: var(--glow-hydro-md);
+  --shadow-glow-lg: var(--glow-hydro-lg);
+
+  /* ── Motion defaults, so a bare `transition` is already on-brand. */
+  --default-transition-duration: var(--duration-normal);
+  --default-transition-timing-function: var(--ease-standard);
+
+  /* ── Containers: DELETE Tailwind's namespace. The design system's
+        640/960/1200/1400px would otherwise redefine max-w-sm..xl and make the
+        scale non-monotonic (max-w-xl 1400px > max-w-2xl 672px), and would
+        poison container queries. Re-added under a distinct name. */
+  --container-*: initial;
+  --container-page-sm: var(--container-sm);
+  --container-page-md: var(--container-md);
+  --container-page-lg: var(--container-lg);
+  --container-page-xl: var(--container-xl);
+
+  /* ── Line-height pairing. Tailwind ships --text-*--line-height companions
+        the design system does not override, so text-2xl would inherit
+        Tailwind's 1.2 rather than the brand's 1.05. Mapping them is a design
+        decision, not a duplicated value. */
+  --text-xs--line-height: var(--leading-normal);
+  --text-sm--line-height: var(--leading-normal);
+  --text-base--line-height: var(--leading-relaxed);
+  --text-lg--line-height: var(--leading-snug);
+  --text-xl--line-height: var(--leading-snug);
+  --text-2xl--line-height: var(--leading-tight);
+  --text-3xl--line-height: var(--leading-tight);
+  --text-4xl--line-height: var(--leading-tight);
+  --text-5xl--line-height: var(--leading-tight);
+}
+
+/* ══ UTILITIES for design-system names with no Tailwind namespace slot ═════ */
+
+@utility text-2xs {
+  font-size: var(--text-2xs);
+  line-height: var(--leading-normal);
+}
+@utility text-md {
+  font-size: var(--text-md);
+  line-height: var(--leading-snug);
+}
+
+@utility tracking-label {
+  letter-spacing: var(--tracking-label);
+}
+@utility rounded-pill {
+  border-radius: var(--radius-pill);
+}
+@utility font-body {
+  font-family: var(--font-body);
+}
+@utility font-display {
+  font-family: var(--font-display);
+}
+@utility ease-standard {
+  transition-timing-function: var(--ease-standard);
+}
+@utility duration-fast {
+  transition-duration: var(--duration-fast);
+}
+@utility duration-normal {
+  transition-duration: var(--duration-normal);
+}
+@utility duration-slow {
+  transition-duration: var(--duration-slow);
+}
+
+/* Design-system border-name parity, alongside border-line-* from the theme. */
+@utility border-subtle {
+  border-color: var(--border-subtle);
+}
+@utility border-default {
+  border-color: var(--border-default);
+}
+@utility border-strong {
+  border-color: var(--border-strong);
+}
+@utility border-hydro {
+  border-color: var(--border-hydro);
+}
+
+/* The brand eyebrow. Mirrors .cv-label from tokens/base.css as a utility. */
+@utility cv-label {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ══ GLASS ═════════════════════════════════════════════════════════════════
+   The sanctioned translucency recipes, encoded so nobody hand-rolls a blur.
+   Alphas derive from carbon tokens via color-mix — no raw rgba() surfaces.
+   Each has a solid fallback below for engines without backdrop-filter. */
+
+@utility glass-card {
+  background-color: color-mix(in srgb, var(--carbon-700) 55%, transparent);
+  -webkit-backdrop-filter: blur(20px) saturate(115%);
+  backdrop-filter: blur(20px) saturate(115%);
+  border: 1px solid var(--border-default);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.08),
+    var(--shadow-md);
+}
+
+@utility glass-nav {
+  background-color: color-mix(in srgb, var(--carbon-900) 60%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  backdrop-filter: blur(18px) saturate(120%);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+@utility glass-modal {
+  background-color: color-mix(in srgb, var(--carbon-700) 72%, transparent);
+  -webkit-backdrop-filter: blur(28px) saturate(115%);
+  backdrop-filter: blur(28px) saturate(115%);
+  border: 1px solid var(--border-strong);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.1),
+    var(--shadow-xl);
+}
+
+/* Portal data surfaces: denser, because tables and logs are read for hours. */
+@utility glass-panel {
+  background-color: color-mix(in srgb, var(--carbon-800) 78%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(110%);
+  backdrop-filter: blur(16px) saturate(110%);
+  border: 1px solid var(--border-default);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
+}
+
+/* Mandatory guard: without backdrop-filter these panels would render as
+   unreadable transparent boxes. Fall every recipe back to its solid token. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-card {
+    background-color: var(--carbon-700);
+  }
+  .glass-nav {
+    background-color: var(--carbon-900);
+  }
+  .glass-modal {
+    background-color: var(--carbon-700);
+  }
+  .glass-panel {
+    background-color: var(--carbon-800);
+  }
+}
+
+/* The signature block cursor, lifted out of Terminal's inline style tag. */
+@keyframes cv-blink {
+  50% {
+    opacity: 0;
+  }
+}
+@utility animate-cursor {
+  animation: cv-blink var(--cursor-blink) steps(1) infinite;
+}
+
+/* ── Grid overlays ─────────────────────────────────────────────────────────
+   Subdued backdrop texture for feature graphics. Ink at very low alpha so it
+   reads as a technical substrate rather than decoration. */
+@utility bg-dot-grid {
+  background-image: radial-gradient(
+    circle at center,
+    rgb(232 236 239 / 0.09) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+
+@utility bg-wire-grid {
+  background-image:
+    linear-gradient(to right, rgb(232 236 239 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(232 236 239 / 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Slow multi-ring pulse for the Kathmandu core. Opacity and scale only —
+   no bounce, per the brand motion rule. */
+@keyframes cv-ring {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* ── Card spotlight ────────────────────────────────────────────────────────
+   A soft Hydro bloom that follows the cursor across a card, plus a brightened
+   hairline. --mx/--my are written by <SpotlightGroup>; without it the vars are
+   unset, the fallback centres the bloom, and opacity keeps it invisible.
+
+   Both layers are pointer-events:none and sit behind content via z-index, so
+   nothing here can intercept a click. */
+@utility cv-spotlight {
+  position: relative;
+  isolation: isolate;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-standard);
+    /* Negative z-index inside the isolated stacking context paints above the
+       card's own background but below its content — so no rule is needed on
+       the children, and nothing fights Tailwind's positioning utilities. */
+    z-index: -1;
+  }
+
+  /* The bloom. */
+  &::before {
+    background: radial-gradient(
+      16rem circle at var(--mx, 50%) var(--my, 50%),
+      rgb(74 222 128 / 0.1),
+      transparent 65%
+    );
+  }
+
+  /* A Hydro edge highlight, masked to the border box so only the hairline
+     lights up rather than the whole card. */
+  &::after {
+    padding: 1px;
+    background: radial-gradient(
+      13rem circle at var(--mx, 50%) var(--my, 50%),
+      rgb(74 222 128 / 0.45),
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  &:hover::before,
+  &:hover::after,
+  &:focus-within::before,
+  &:focus-within::after {
+    opacity: 1;
+  }
+}
+
+/* No cursor to follow, and no motion budget for it. */
+@media (prefers-reduced-motion: reduce), (pointer: coarse) {
+  .cv-spotlight::before,
+  .cv-spotlight::after {
+    display: none;
+  }
+}
+
+/* ══ BASE PATCHES ══════════════════════════════════════════════════════════ */
+@layer base {
+  /* Tailwind v4 Preflight defaults border-color to currentColor. Restore the
+     design-system hairline so a bare `border` class is already on-brand. */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--border-default);
+  }
+
+  /* "Motion mechanical, no bounce" applied all the way down. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

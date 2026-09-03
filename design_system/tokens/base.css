@@ -1,0 +1,73 @@
+/* ── Corevalley base layer ───────────────────────────────────────────────
+   Element defaults applied on top of the token layer. Dark-mode-first:
+   Carbon ground, Ink text, Manrope body. Opt-in, lightweight. */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: var(--fw-light);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--type-heading-family);
+  font-weight: var(--type-heading-weight);
+  letter-spacing: var(--type-heading-tracking);
+  line-height: var(--leading-tight);
+  margin: 0;
+  color: var(--text-primary);
+}
+
+p { margin: 0; text-wrap: pretty; }
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+a:hover { color: var(--link-hover); }
+
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+/* Mono eyebrow label — the brand's signature small-caps device */
+.cv-label {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* The terminal wordmark, available as a utility */
+.cv-wordmark {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-medium);
+  text-transform: lowercase;
+  letter-spacing: var(--tracking-normal);
+  color: var(--text-primary);
+}
+
+::selection {
+  background: var(--hydro);
+  color: var(--carbon-900);
+}
+
+:focus-visible {
+  outline: var(--ring-width) solid var(--focus-ring);
+  outline-offset: var(--ring-offset);
+}

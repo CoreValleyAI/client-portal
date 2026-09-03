@@ -1,0 +1,31 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# next
+/.next/
+/out/
+/build
+next-env.d.ts
+
+# production
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# env
+.env
+.env*.local
+
+# misc
+.DS_Store
+Thumbs.db
+*.pem
+npm-debug.log*
+.eslintcache
+
+# Reference material is intentionally tracked, NOT ignored:
+#   design_system/  (Claude skill + token source of truth)
+#   reference/      (archived static site)

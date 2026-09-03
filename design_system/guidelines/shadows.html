@@ -1,0 +1,25 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Shadows & Hydro glow" subtitle="Deep low-spread shadows on carbon; green is the only glow" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--carbon-900);padding:26px;font-family:var(--font-mono)}
+  .row{display:flex;gap:24px}
+  .b{flex:1;display:flex;flex-direction:column;align-items:center;gap:12px}
+  .sq{width:100%;height:62px;background:var(--carbon-600);border-radius:var(--radius-md);border:1px solid var(--border-subtle)}
+  .n{font-size:10px;color:var(--mute)}
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="b"><div class="sq" style="box-shadow:0 1px 2px rgba(0,0,0,.6)"></div><div class="n">shadow-sm</div></div>
+    <div class="b"><div class="sq" style="box-shadow:0 4px 16px rgba(0,0,0,.55)"></div><div class="n">shadow-md</div></div>
+    <div class="b"><div class="sq" style="box-shadow:0 12px 40px rgba(0,0,0,.6)"></div><div class="n">shadow-lg</div></div>
+    <div class="b"><div class="sq" style="box-shadow:0 24px 70px rgba(0,0,0,.7)"></div><div class="n">shadow-xl</div></div>
+    <div class="b"><div class="sq" style="box-shadow:0 0 20px rgba(74,222,128,.4);border-color:var(--border-hydro)"></div><div class="n" style="color:var(--hydro)">glow-hydro</div></div>
+  </div>
+</body>
+</html>

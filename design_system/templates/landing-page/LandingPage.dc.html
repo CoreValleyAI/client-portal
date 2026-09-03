@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Landing Page" description="Corevalley marketing landing — terminal hero, stats, value pillars, CTA. Edit copy in place." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>
+  @keyframes cvBlink { 50% { opacity: 0; } }
+  html, body { margin: 0; background: #05080D; }
+  a { text-decoration: none; transition: color 120ms; }
+</style>
+</helmet>
+<div style="font-family: var(--font-body); background: var(--carbon-900); color: var(--ink-200); min-height: 100vh;">
+
+  <!-- nav -->
+  <nav style="position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 28px; padding: 16px 40px; background: rgba(5,8,13,0.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-subtle);">
+    <span style="display: inline-flex; align-items: center; gap: 9px;">
+      <img src="../../assets/logo/cv-brandmark.svg" alt="" style="height: 26px; display: block;">
+      <img src="../../assets/logo/cv-wordmark-green.svg" alt="corevalley" style="height: 16px; display: block;">
+    </span>
+    <div style="display: flex; gap: 24px; margin-left: 18px;">
+      <a href="#" style="font-family: var(--font-mono); font-size: 13px; color: var(--ink-400);">compute</a>
+      <a href="#" style="font-family: var(--font-mono); font-size: 13px; color: var(--ink-400);">regions</a>
+      <a href="#" style="font-family: var(--font-mono); font-size: 13px; color: var(--ink-400);">pricing</a>
+      <a href="#" style="font-family: var(--font-mono); font-size: 13px; color: var(--ink-400);">docs</a>
+    </div>
+    <div style="margin-left: auto; display: flex; gap: 10px; align-items: center;">
+      <x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.Button" variant="ghost" size="sm" mono="{{ true }}" hint-size="80px,30px">sign in</x-import>
+      <x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.Button" variant="primary" size="sm" mono="{{ true }}" hint-size="120px,30px">get access</x-import>
+    </div>
+  </nav>
+
+  <!-- hero -->
+  <section style="position: relative; padding: 80px 40px 64px; overflow: hidden;">
+    <img src="../../assets/ridgeline.svg" alt="" style="position: absolute; left: 0; right: 0; bottom: -20px; width: 100%; opacity: 0.35; pointer-events: none;">
+    <div style="position: relative; max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center;">
+      <div>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--hydro); background: rgba(74,222,128,0.10); border: 1px solid var(--border-hydro); border-radius: var(--radius-pill); padding: 3px 9px; margin-bottom: 22px;">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--hydro); box-shadow: 0 0 6px var(--hydro);"></span>hydro grid · live in nepal
+        </span>
+        <h1 style="font-family: var(--font-body); font-weight: 800; font-size: 58px; line-height: 1.02; letter-spacing: -0.03em; color: var(--ink-100); margin: 0 0 20px;">Compute that runs on<br>rivers, <span style="color: var(--hydro);">not coal.</span></h1>
+        <p style="font-family: var(--font-body); font-weight: 300; font-size: 17px; line-height: 1.6; color: var(--ink-300); max-width: 480px; margin: 0 0 30px;">GPU compute powered by Nepal’s hydroelectricity — near-zero carbon, low cost, and positioned at the edge of the world’s fastest-growing AI markets.</p>
+        <div style="display: flex; gap: 12px;">
+          <x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.Button" variant="primary" size="lg" mono="{{ true }}" hint-size="180px,46px">start deploying</x-import>
+          <x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.Button" variant="secondary" size="lg" mono="{{ true }}" hint-size="150px,46px">watch demo</x-import>
+        </div>
+      </div>
+
+      <!-- terminal -->
+      <div style="background: var(--carbon-800); border: 1px solid var(--border-default); border-radius: var(--radius-lg); overflow: hidden; font-family: var(--font-mono); box-shadow: 0 12px 40px rgba(0,0,0,0.5);">
+        <div style="display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--border-subtle); background: var(--carbon-700);">
+          <span style="width: 9px; height: 9px; border-radius: 50%; background: #2A2F38;"></span>
+          <span style="width: 9px; height: 9px; border-radius: 50%; background: #2A2F38;"></span>
+          <span style="width: 9px; height: 9px; border-radius: 50%; background: #2A2F38;"></span>
+          <span style="margin-left: 8px; font-size: 12px; color: var(--mute);">np-ktm-1.corevalley.ai</span>
+        </div>
+        <div style="padding: 16px 18px; font-size: 13.5px; line-height: 1.9;">
+          <div style="color: var(--ink-200);"><span style="color: var(--hydro); margin-right: 8px;">$</span>corevalley deploy --gpu h200 --count 8</div>
+          <div style="color: var(--ink-400);">→ matched hydro grid · Upper Tamakoshi</div>
+          <div style="color: var(--ink-400);">→ 8× H200 · ~40ms → mumbai · 0g CO₂ · $0.04/kWh</div>
+          <div style="color: var(--ink-600);"># instance cv-9f3a21 live in 12s</div>
+          <div style="color: var(--ink-200);"><span style="color: var(--hydro); margin-right: 8px;">$</span><span style="display: inline-block; width: 8px; height: 16px; vertical-align: -3px; background: var(--hydro); box-shadow: 0 0 8px rgba(74,222,128,0.5); animation: cvBlink 1s steps(1) infinite;"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- stats -->
+    <div style="position: relative; max-width: 1120px; margin: 56px auto 0; display: flex; gap: 56px; padding-top: 32px; border-top: 1px solid var(--border-subtle);">
+      <x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.StatBlock" value="~$0.04" label="per kWh hydro power" hint-size="160px,80px"></x-import>
+      <x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.StatBlock" value="~0g" label="carbon per compute" accent="{{ true }}" hint-size="160px,80px"></x-import>
+      <x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.StatBlock" value="~40ms" label="latency to Mumbai" hint-size="160px,80px"></x-import>
+      <x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.StatBlock" value="3" label="himalayan regions" hint-size="160px,80px"></x-import>
+    </div>
+  </section>
+
+  <!-- pillars -->
+  <section style="padding: 72px 40px; border-top: 1px solid var(--border-subtle);">
+    <div style="max-width: 1120px; margin: 0 auto;">
+      <div style="font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); margin-bottom: 12px;">Why corevalley</div>
+      <h2 style="font-family: var(--font-body); font-weight: 700; font-size: 38px; letter-spacing: -0.025em; color: var(--ink-100); max-width: 620px; margin: 0 0 44px;">A platform, not a storefront. Green energy and cost, where they win.</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+        <div style="background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 26px;">
+          <h3 style="font-family: var(--font-body); font-weight: 700; font-size: 20px; letter-spacing: -0.02em; color: var(--ink-100); margin: 0 0 8px;">Near-zero carbon</h3>
+          <p style="font-family: var(--font-body); font-weight: 300; font-size: 14.5px; line-height: 1.6; color: var(--ink-400); margin: 0;">Every instance draws on Himalayan hydroelectricity. ~0g CO₂ per compute — a structural ESG advantage over fossil-powered grids.</p>
+        </div>
+        <div style="background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 26px;">
+          <h3 style="font-family: var(--font-body); font-weight: 700; font-size: 20px; letter-spacing: -0.02em; color: var(--ink-100); margin: 0 0 8px;">Cheap, abundant power</h3>
+          <p style="font-family: var(--font-body); font-weight: 300; font-size: 14.5px; line-height: 1.6; color: var(--ink-400); margin: 0;">Hydro at ~$0.04/kWh, wired straight into the datacenter. Lower energy cost flows directly to your training bill.</p>
+        </div>
+        <div style="background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 26px;">
+          <h3 style="font-family: var(--font-body); font-weight: 700; font-size: 20px; letter-spacing: -0.02em; color: var(--ink-100); margin: 0 0 8px;">At the edge of demand</h3>
+          <p style="font-family: var(--font-body); font-weight: 300; font-size: 14.5px; line-height: 1.6; color: var(--ink-400); margin: 0;">~40ms to Mumbai. Primary market India, Southeast Asia a natural adjacency — compute where the AI economy grows fastest.</p>
+        </div>
+        <div style="background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 26px;">
+          <h3 style="font-family: var(--font-body); font-weight: 700; font-size: 20px; letter-spacing: -0.02em; color: var(--ink-100); margin: 0 0 8px;">Built for the heavy jobs</h3>
+          <p style="font-family: var(--font-body); font-weight: 300; font-size: 14.5px; line-height: 1.6; color: var(--ink-400); margin: 0;">Training, fine-tuning, batch and async pipelines — H200, H100, A100 and L40S, provisioned from a single CLI call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- cta -->
+  <section style="position: relative; padding: 88px 40px 80px; border-top: 1px solid var(--border-subtle); overflow: hidden;">
+    <img src="../../assets/ridgeline.svg" alt="" style="position: absolute; left: 0; right: 0; bottom: 0; width: 100%; opacity: 0.5; pointer-events: none;">
+    <div style="position: relative; max-width: 720px; margin: 0 auto; text-align: center;">
+      <h2 style="font-family: var(--font-body); font-weight: 800; font-size: 46px; letter-spacing: -0.03em; color: var(--ink-100); margin: 0 0 18px;">Spin up hydro-powered GPUs<br>in one command.</h2>
+      <p style="font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.6; color: var(--ink-300); margin: 0 0 30px;">Built for training, fine-tuning, and batch / async AI workloads.</p>
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.Button" variant="primary" size="lg" mono="{{ true }}" hint-size="150px,46px">get access</x-import>
+        <x-import component-from-global-scope="CorevalleyDesignSystem_9d3a1a.Button" variant="secondary" size="lg" mono="{{ true }}" hint-size="150px,46px">read the docs</x-import>
+      </div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+</body>
+</html>

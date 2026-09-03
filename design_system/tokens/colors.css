@@ -1,0 +1,78 @@
+/* ── Corevalley color system ─────────────────────────────────────────────
+   Dark-mode-first. Carbon grounds everything; Hydro green is a signal,
+   never a wash. Base palette is taken verbatim from Brand Guidelines v1.0
+   (06 / Color). Surface, border and state tokens are derived extensions. */
+
+:root {
+  /* ── Brand base palette ──────────────────────────────── */
+  --hydro:        #4ADE80;  /* primary / accent / action            */
+  --hydro-dark:   #16A34A;  /* hover / secondary green              */
+  --carbon:       #05080D;  /* ground / background                  */
+  --ink:          #E8ECEF;  /* primary text on dark                 */
+  --mute:         #6B7280;  /* secondary / muted text               */
+
+  /* ── Hydro green scale (derived) ─────────────────────── */
+  --hydro-100: #D6FBE5;
+  --hydro-200: #A7F3CB;
+  --hydro-300: #6EE7A8;
+  --hydro-400: #4ADE80;   /* = --hydro */
+  --hydro-500: #22C55E;
+  --hydro-600: #16A34A;   /* = --hydro-dark */
+  --hydro-700: #15803D;
+  --hydro-800: #14532D;
+  --hydro-900: #0B2E1A;
+  --hydro-glow: rgba(74, 222, 128, 0.45);  /* terminal / cursor glow */
+
+  /* ── Carbon surface scale (derived, dark elevations) ─── */
+  --carbon-900: #05080D;   /* = --carbon, base ground             */
+  --carbon-800: #080C13;   /* sunken / inset                      */
+  --carbon-700: #0B0F17;   /* card surface                        */
+  --carbon-600: #11161F;   /* raised surface / popover            */
+  --carbon-500: #181E29;   /* hover surface / input               */
+  --carbon-400: #232B38;   /* active / pressed surface            */
+
+  /* ── Ink / neutral text scale (derived) ──────────────── */
+  --ink-100: #F7F9FA;
+  --ink-200: #E8ECEF;      /* = --ink */
+  --ink-300: #C2C8CF;
+  --ink-400: #9AA2AD;
+  --ink-500: #6B7280;      /* = --mute */
+  --ink-600: #4B515C;
+  --ink-700: #333944;
+
+  /* ── Borders & hairlines (on carbon) ─────────────────── */
+  --border-subtle:  rgba(232, 236, 239, 0.07);
+  --border-default: rgba(232, 236, 239, 0.12);
+  --border-strong:  rgba(232, 236, 239, 0.20);
+  --border-hydro:   rgba(74, 222, 128, 0.35);
+
+  /* ── Semantic / status (kept disciplined, mono-ish) ──── */
+  --success: #4ADE80;
+  --warning: #FBBF24;
+  --danger:  #F87171;
+  --info:    #38BDF8;
+
+  /* ── Semantic aliases ────────────────────────────────── */
+  --bg-base:        var(--carbon-900);
+  --bg-sunken:      var(--carbon-800);
+  --surface-card:   var(--carbon-700);
+  --surface-raised: var(--carbon-600);
+  --surface-input:  var(--carbon-500);
+  --surface-hover:  var(--carbon-500);
+  --surface-active: var(--carbon-400);
+
+  --text-primary:   var(--ink-200);
+  --text-secondary: var(--ink-400);
+  --text-muted:     var(--mute);
+  --text-accent:    var(--hydro);
+  --text-on-hydro:  var(--carbon-900);
+
+  --action:         var(--hydro);
+  --action-hover:   var(--hydro-dark);
+  --action-press:   var(--hydro-700);
+
+  --link:           var(--hydro);
+  --link-hover:     var(--hydro-300);
+
+  --focus-ring:     var(--hydro);
+}

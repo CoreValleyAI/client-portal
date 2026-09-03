@@ -1,0 +1,50 @@
+<!-- @dsCard group="Components" viewport="700x230" name="Actions — Button & IconButton" subtitle="Primary action in Hydro; everything else quiet" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>html,body{margin:0}body{background:var(--carbon-900);padding:22px}</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { Button, IconButton, Icon } = window.CorevalleyDesignSystem_9d3a1a;
+const Row = ({children, label}) => (
+  <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:14}}>
+    <span style={{fontFamily:'var(--font-mono)',fontSize:10,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--mute)',width:72}}>{label}</span>
+    <div style={{display:'flex',gap:10,alignItems:'center',flexWrap:'wrap'}}>{children}</div>
+  </div>
+);
+function Demo(){
+  return (
+    <div>
+      <Row label="Variant">
+        <Button variant="primary">Deploy</Button>
+        <Button variant="secondary">Cancel</Button>
+        <Button variant="ghost" mono iconLeft={<Icon name="terminal" size={15}/>}>Open CLI</Button>
+        <Button variant="danger">Terminate</Button>
+      </Row>
+      <Row label="Size">
+        <Button size="sm">Small</Button>
+        <Button size="md">Medium</Button>
+        <Button size="lg" iconRight={<Icon name="arrow-right" size={17}/>}>Large</Button>
+        <Button disabled>Disabled</Button>
+      </Row>
+      <Row label="Icon">
+        <IconButton icon={<Icon name="plus"/>} variant="primary" title="New"/>
+        <IconButton icon={<Icon name="settings"/>} variant="surface" title="Settings"/>
+        <IconButton icon={<Icon name="bell"/>} title="Alerts"/>
+        <IconButton icon={<Icon name="more-horizontal"/>} title="More"/>
+      </Row>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body>
+</html>

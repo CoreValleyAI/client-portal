@@ -1,0 +1,25 @@
+<!-- @dsCard group="Colors" viewport="700x140" name="Status colors" subtitle="Disciplined semantic set — used as signals, sparingly" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--carbon-900);padding:22px;font-family:var(--font-mono)}
+  .row{display:flex;gap:14px}
+  .sw{flex:1;display:flex;align-items:center;gap:11px;padding:14px;border-radius:var(--radius-md);background:var(--carbon-700);border:1px solid var(--border-subtle)}
+  .dot{width:14px;height:14px;border-radius:var(--radius-pill);flex:none}
+  .nm{font-size:11px;color:var(--ink-200);font-weight:500}
+  .hex{font-size:10px;color:var(--mute);margin-top:2px;text-transform:uppercase}
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="dot" style="background:#4ADE80"></div><div><div class="nm">Success</div><div class="hex">#4ADE80</div></div></div>
+    <div class="sw"><div class="dot" style="background:#FBBF24"></div><div><div class="nm">Warning</div><div class="hex">#FBBF24</div></div></div>
+    <div class="sw"><div class="dot" style="background:#F87171"></div><div><div class="nm">Danger</div><div class="hex">#F87171</div></div></div>
+    <div class="sw"><div class="dot" style="background:#38BDF8"></div><div><div class="nm">Info</div><div class="hex">#38BDF8</div></div></div>
+  </div>
+</body>
+</html>

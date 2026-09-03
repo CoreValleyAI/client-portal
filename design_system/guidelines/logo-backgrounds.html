@@ -1,0 +1,33 @@
+<!-- @dsCard group="Brand" viewport="700x200" name="Logo on backgrounds" subtitle="Green on Carbon preferred · two-tone on light · white on Hydro green" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--carbon-900);padding:20px;font-family:var(--font-mono)}
+  .row{display:flex;gap:16px}
+  .col{flex:1}
+  .tile{height:112px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;border:1px solid var(--border-subtle);overflow:hidden}
+  .tile img{height:74px}
+  .lab{font-size:10px;color:var(--mute);text-align:center;margin-top:8px;letter-spacing:.08em;text-transform:uppercase}
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="col">
+      <div class="tile" style="background:#05080D"><img src="../assets/logo/cv-combinedmark-green.svg" alt="logo green on carbon"></div>
+      <div class="lab" style="color:var(--hydro)">Preferred · green on Carbon</div>
+    </div>
+    <div class="col">
+      <div class="tile" style="background:#EDEFF2"><img src="../assets/logo/cv-combinedmark.svg" alt="logo two-tone on light"></div>
+      <div class="lab">On light · two-tone</div>
+    </div>
+    <div class="col">
+      <div class="tile" style="background:#1DCC6F"><img src="../assets/logo/cv-combinedmark-white.svg" alt="logo white on green"></div>
+      <div class="lab">On Hydro green · white</div>
+    </div>
+  </div>
+</body>
+</html>

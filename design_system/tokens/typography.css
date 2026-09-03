@@ -1,0 +1,65 @@
+/* ── Corevalley typography ───────────────────────────────────────────────
+   Two families: JetBrains Mono carries the brand voice (logo, code, data,
+   labels, technical detail). Manrope handles marketing headlines & body.
+   Headlines set tight; body stays light-weight and generously spaced
+   (Manrope 300 @ 1.6) per Brand Guidelines v1.0 (08 / Typography). */
+
+:root {
+  /* ── Families ─────────────────────────────────────────── */
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: var(--font-mono);   /* display = mono, the brand's voice */
+
+  /* ── Weights ──────────────────────────────────────────── */
+  --fw-light:    300; /* @kind font */
+  --fw-regular:  400; /* @kind font */
+  --fw-medium:   500; /* @kind font */  /* the logo / wordmark weight */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold:     700; /* @kind font */
+  --fw-extra:    800; /* @kind font */
+
+  /* ── Type scale (px-based, dark-UI friendly) ──────────── */
+  --text-2xs: 11px;
+  --text-xs:  12px;
+  --text-sm:  13px;
+  --text-base:15px;
+  --text-md:  17px;
+  --text-lg:  20px;
+  --text-xl:  24px;
+  --text-2xl: 32px;
+  --text-3xl: 42px;
+  --text-4xl: 56px;
+  --text-5xl: 72px;
+
+  /* ── Line heights ─────────────────────────────────────── */
+  --leading-tight:   1.05;   /* headlines set tight */
+  --leading-snug:    1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.6;    /* body on dark ground */
+
+  /* ── Letter spacing ───────────────────────────────────── */
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-label:  0.14em;  /* uppercase mono eyebrow labels */
+
+  /* ── Semantic roles ───────────────────────────────────── */
+  --type-display-family: var(--font-mono);
+  --type-display-weight: var(--fw-medium);
+  --type-display-tracking: var(--tracking-tight);
+
+  --type-heading-family: var(--font-body);
+  --type-heading-weight: var(--fw-bold);
+  --type-heading-tracking: var(--tracking-tight);
+
+  --type-body-family: var(--font-body);
+  --type-body-weight: var(--fw-light);
+  --type-body-leading: var(--leading-relaxed);
+
+  --type-label-family: var(--font-mono);
+  --type-label-weight: var(--fw-medium);
+  --type-label-tracking: var(--tracking-label);
+
+  --type-code-family: var(--font-mono);
+  --type-code-weight: var(--fw-regular);
+}

@@ -1,0 +1,7 @@
+/* Corevalley webfonts
+   Brand faces: JetBrains Mono (display/mono) + Manrope (body).
+   Both are the genuine brand typefaces, loaded from the Google Fonts CDN.
+   If you need to self-host, drop woff2 files in assets/fonts/ and swap the
+   @import below for local @font-face rules. */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@300;400;500;600;700;800&display=swap');

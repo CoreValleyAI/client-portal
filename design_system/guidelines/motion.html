@@ -1,0 +1,27 @@
+<!-- @dsCard group="Spacing" viewport="700x150" name="Motion" subtitle="Measured & mechanical — no bounce; cursor blinks at 1s" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--carbon-900);padding:22px;font-family:var(--font-mono)}
+  .row{display:flex;gap:14px;margin-bottom:14px}
+  .pill{font-size:11px;color:var(--ink-300);background:var(--carbon-700);border:1px solid var(--border-default);border-radius:var(--radius-sm);padding:8px 12px}
+  .pill b{color:var(--hydro);font-weight:500}
+  .term{font-size:15px;color:var(--ink-200)}
+  .cur{display:inline-block;width:9px;height:17px;background:var(--hydro);vertical-align:-2px;margin-left:2px;animation:bl 1s steps(1) infinite;box-shadow:0 0 8px rgba(74,222,128,.5)}
+  @keyframes bl{50%{opacity:0}}
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="pill">fast <b>120ms</b></div>
+    <div class="pill">normal <b>200ms</b></div>
+    <div class="pill">slow <b>360ms</b></div>
+    <div class="pill">ease <b>0.2,0,0.2,1</b></div>
+  </div>
+  <div class="term">&gt; corevalley<span class="cur"></span></div>
+</body>
+</html>

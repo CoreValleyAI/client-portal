@@ -1,0 +1,32 @@
+<!-- @dsCard group="Colors" viewport="700x130" name="Hydro green scale" subtitle="Derived green ramp — green is a signal, not a wash" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--carbon-900);padding:22px;font-family:var(--font-mono)}
+  .ramp{display:flex;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-subtle)}
+  .c{flex:1;height:64px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:7px}
+  .c span{font-size:10px;color:rgba(5,8,13,.7);font-weight:700}
+  .c.dk span{color:rgba(232,236,239,.7)}
+  .labels{display:flex;margin-top:8px}
+  .labels div{flex:1;text-align:center;font-size:10px;color:var(--mute)}
+</style>
+</head>
+<body>
+  <div class="ramp">
+    <div class="c" style="background:#D6FBE5"><span>100</span></div>
+    <div class="c" style="background:#A7F3CB"><span>200</span></div>
+    <div class="c" style="background:#6EE7A8"><span>300</span></div>
+    <div class="c" style="background:#4ADE80"><span>400</span></div>
+    <div class="c" style="background:#22C55E"><span>500</span></div>
+    <div class="c dk" style="background:#16A34A"><span>600</span></div>
+    <div class="c dk" style="background:#15803D"><span>700</span></div>
+    <div class="c dk" style="background:#14532D"><span>800</span></div>
+    <div class="c dk" style="background:#0B2E1A"><span>900</span></div>
+  </div>
+  <div class="labels"><div>&nbsp;</div><div></div><div></div><div>= Hydro</div><div></div><div>= Hydro Dark</div><div></div><div></div><div></div></div>
+</body>
+</html>

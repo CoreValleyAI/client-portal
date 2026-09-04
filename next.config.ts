@@ -1,13 +1,38 @@
 import type { NextConfig } from "next";
 
+/**
+ * Two build targets.
+ *
+ *   default  - a Node server build. Middleware and /api/auth/* exist, so
+ *              Keycloak (or the mock provider) does real sign-in. This is
+ *              what `npm run dev` and any hosted deployment use.
+ *   static   - NEXT_STATIC_EXPORT=true produces ./out for GitHub Pages. A
+ *              static export has no server: the auth route handler is
+ *              excluded via `pageExtensions` below and the console runs on a
+ *              baked-in demo session (see components/layout/auth-provider).
+ */
+const staticExport = process.env.NEXT_STATIC_EXPORT === "true";
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
-  // Static export for GitHub Pages (output to /out).
-  output: "export",
+  ...(staticExport ? { output: "export" as const } : {}),
   images: {
     unoptimized: true,
+  },
+
+  /* `route.node.ts` only counts as a route when "node.ts" is listed. Dropping
+     it in the static build is what keeps `output: export` from erroring on
+     the dynamic NextAuth handler. */
+  pageExtensions: staticExport
+    ? ["tsx", "ts", "jsx", "js"]
+    : ["node.ts", "tsx", "ts", "jsx", "js"],
+
+  /* Read by the client through process.env; tells the browser bundle that no
+     /api/auth endpoint exists to talk to. */
+  env: {
+    NEXT_PUBLIC_STATIC_DEMO: staticExport ? "true" : "",
   },
 
   // Set basePath when deploying to a subpath (e.g. username.github.io/repo).

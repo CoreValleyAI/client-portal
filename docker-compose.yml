@@ -1,0 +1,78 @@
+# Local Keycloak for CoreValley portal beta testing.
+#
+#   docker compose up -d
+#   Admin console : http://localhost:8080  (admin / admin)
+#   Realm         : corevalley  (imported from ./keycloak/corevalley-realm.json)
+#   Test user     : kaustuv@corevalley.ai / kaustuv123   (realm role: admin)
+#                   beta@corevalley.ai    / beta123      (realm role: member)
+#
+# The realm is imported only when it does not already exist. To re-import
+# after editing the JSON: docker compose down -v && docker compose up -d
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: cv-keycloak-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: keycloak_dev_pw
+    volumes:
+      - kc-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keycloak"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0
+    container_name: cv-keycloak
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # start-dev enables the development profile: HTTP without TLS, relaxed
+    # hostname checks, and --import-realm support.
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: keycloak_dev_pw
+      KC_HOSTNAME: localhost
+      KC_HOSTNAME_STRICT: "false"
+      KC_HOSTNAME_STRICT_HTTPS: "false"
+      KC_HTTP_ENABLED: "true"
+      KC_HTTP_PORT: 8080
+      KC_HEALTH_ENABLED: "true"
+      KC_METRICS_ENABLED: "true"
+      # Keycloak 25 still reads the KEYCLOAK_ADMIN pair (the KC_BOOTSTRAP_*
+      # names only land in 26).
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - ./keycloak:/opt/keycloak/data/import:ro
+    ports:
+      - "8080:8080"
+    healthcheck:
+      # The image ships neither curl nor wget, so probe over bash's /dev/tcp.
+      # Keycloak 25 serves health on the separate management port 9000, not on
+      # 8080 - hitting 8080/health/ready just 404s. The folded block scalar
+      # below keeps the printf escapes as literal backslashes; a double-quoted
+      # YAML string would turn them into real newlines and break the request.
+      test:
+        - CMD
+        - bash
+        - -c
+        - >-
+          exec 3<>/dev/tcp/127.0.0.1/9000 &&
+          printf 'GET /health/ready HTTP/1.0\r\n\r\n' >&3 &&
+          grep -q '"status": "UP"' <&3
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 40s
+
+volumes:
+  kc-pgdata:

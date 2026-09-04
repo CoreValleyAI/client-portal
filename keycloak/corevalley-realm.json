@@ -1,0 +1,154 @@
+{
+  "realm": "corevalley",
+  "displayName": "CoreValley",
+  "displayNameHtml": "<span style=\"color:#3DD9B4;font-weight:700\">CoreValley</span>",
+  "enabled": true,
+  "sslRequired": "none",
+  "registrationAllowed": true,
+  "registrationEmailAsUsername": true,
+  "rememberMe": true,
+  "verifyEmail": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": true,
+  "accessTokenLifespan": 900,
+  "ssoSessionIdleTimeout": 1800,
+  "ssoSessionMaxLifespan": 36000,
+  "defaultSignatureAlgorithm": "RS256",
+  "roles": {
+    "realm": [
+      {
+        "name": "admin",
+        "description": "Full control over the organisation's CoreValley console"
+      },
+      {
+        "name": "member",
+        "description": "Standard console access"
+      }
+    ]
+  },
+  "defaultRoles": ["member"],
+  "components": {
+    "org.keycloak.userprofile.UserProfileProvider": [
+      {
+        "name": "Declarative User Profile",
+        "providerId": "declarative-user-profile",
+        "subComponents": {},
+        "config": {
+          "kc.user.profile.config": [
+            "{\"attributes\":[{\"name\":\"username\",\"displayName\":\"${username}\",\"validations\":{\"length\":{\"min\":3,\"max\":255},\"username-prohibited-characters\":{},\"up-username-not-idn-homograph\":{}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"email\",\"displayName\":\"${email}\",\"validations\":{\"email\":{},\"length\":{\"max\":255}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"firstName\",\"displayName\":\"${firstName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"lastName\",\"displayName\":\"${lastName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"org\",\"displayName\":\"Organisation\",\"validations\":{\"length\":{\"max\":255}},\"annotations\":{\"inputType\":\"text\"},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false}],\"groups\":[{\"name\":\"user-metadata\",\"displayHeader\":\"User metadata\",\"displayDescription\":\"Attributes, which refer to user metadata\"}],\"unmanagedAttributePolicy\":\"ENABLED\"}"
+          ]
+        }
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "corevalley-portal",
+      "name": "CoreValley Console",
+      "description": "Next.js client portal (NextAuth.js v5 OIDC client)",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "corevalley-portal-dev-secret",
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "fullScopeAllowed": true,
+      "rootUrl": "http://localhost:3000",
+      "baseUrl": "/portal",
+      "adminUrl": "http://localhost:3000",
+      "redirectUris": [
+        "http://localhost:3000/api/auth/callback/keycloak",
+        "http://localhost:3000/*"
+      ],
+      "webOrigins": ["http://localhost:3000"],
+      "attributes": {
+        "post.logout.redirect.uris": "http://localhost:3000/*",
+        "pkce.code.challenge.method": "S256"
+      },
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "profile",
+        "roles",
+        "basic",
+        "email"
+      ],
+      "protocolMappers": [
+        {
+          "name": "realm roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "multivalued": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "realm_access.roles",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "name": "organisation",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.attribute": "org",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "org",
+            "jsonType.label": "String"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "kaustuv@corevalley.ai",
+      "email": "kaustuv@corevalley.ai",
+      "emailVerified": true,
+      "enabled": true,
+      "firstName": "Kaustuv",
+      "lastName": "Bhattarai",
+      "attributes": {
+        "org": ["CoreValley"]
+      },
+      "credentials": [
+        {
+          "type": "password",
+          "value": "kaustuv123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["admin", "member", "default-roles-corevalley"]
+    },
+    {
+      "username": "beta@corevalley.ai",
+      "email": "beta@corevalley.ai",
+      "emailVerified": true,
+      "enabled": true,
+      "firstName": "Beta",
+      "lastName": "Tester",
+      "attributes": {
+        "org": ["Himal Analytics"]
+      },
+      "credentials": [
+        {
+          "type": "password",
+          "value": "beta123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["member", "default-roles-corevalley"]
+    }
+  ]
+}

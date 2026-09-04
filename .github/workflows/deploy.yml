@@ -36,6 +36,9 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+          # Pages has no server: emit ./out, drop the NextAuth route handler
+          # and run the console on the baked-in demo session.
+          NEXT_STATIC_EXPORT: "true"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

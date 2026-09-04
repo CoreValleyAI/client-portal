@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="login-pf">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="robots" content="noindex, nofollow">
+
+            <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Sign in to CoreValley</title>
+    <link rel="icon" href="/resources/tqww8/login/keycloak/img/favicon.ico" />
+            <link href="/resources/tqww8/common/keycloak/node_modules/@patternfly/patternfly/patternfly.min.css" rel="stylesheet" />
+            <link href="/resources/tqww8/common/keycloak/node_modules/patternfly/dist/css/patternfly.min.css" rel="stylesheet" />
+            <link href="/resources/tqww8/common/keycloak/node_modules/patternfly/dist/css/patternfly-additions.min.css" rel="stylesheet" />
+            <link href="/resources/tqww8/common/keycloak/lib/pficon/pficon.css" rel="stylesheet" />
+            <link href="/resources/tqww8/login/keycloak/css/login.css" rel="stylesheet" />
+    <script type="importmap">
+        {
+            "imports": {
+                "rfc4648": "/resources/tqww8/common/keycloak/node_modules/rfc4648/lib/rfc4648.js"
+            }
+        }
+    </script>
+    <script src="/resources/tqww8/login/keycloak/js/menu-button-links.js" type="module"></script>
+    <script type="module">
+        import { checkCookiesAndSetTimer } from "/resources/tqww8/login/keycloak/js/authChecker.js";
+
+        checkCookiesAndSetTimer(
+          "/realms/corevalley/login-actions/restart?client_id=corevalley-portal&tab_id=H34uKW4lODQ&client_data=eyJydSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMC9hcGkvYXV0aC9jYWxsYmFjay9rZXljbG9hay1yZWdpc3RlciIsInJ0IjoiY29kZSJ9&skip_logout=true"
+        );
+    </script>
+</head>
+
+<body class="">
+<div class="login-pf-page">
+    <div id="kc-header" class="login-pf-page-header">
+        <div id="kc-header-wrapper"
+             class=""><span style="color:#3dd9b4;font-weight:700">CoreValley</span></div>
+    </div>
+    <div class="card-pf">
+        <header class="login-pf-header">
+                <div class="">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 subtitle">
+                        <span class="subtitle"><span class="required">*</span> Required fields</span>
+                    </div>
+                    <div class="col-md-10">
+                        <h1 id="kc-page-title">            Register
+</h1>
+                    </div>
+                </div>
+      </header>
+      <div id="kc-content">
+        <div id="kc-content-wrapper">
+
+
+        <form id="kc-register-form" class="form-horizontal" action="http://localhost:8080/realms/corevalley/login-actions/registration?session_code=_xX993hBJ6XAcSHo2q9VaE7KnlOD4CXPkA2KZX5N-5A&amp;execution=375aad37-987b-4438-b135-4e3537a6b120&amp;client_id=corevalley-portal&amp;tab_id=H34uKW4lODQ&amp;client_data=eyJydSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMC9hcGkvYXV0aC9jYWxsYmFjay9rZXljbG9hay1yZWdpc3RlciIsInJ0IjoiY29kZSJ9" method="post">
+
+	
+
+
+		<div class="form-group">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label for="email" class="pf-c-form__label pf-c-form__label-text">Email</label>
+				*
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<input type="text" id="email" name="email" value="" class="pf-c-form-control"
+		aria-invalid=""
+		
+		autocomplete="email"
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	/>
+			</div>
+		</div>
+                        <div class="form-group">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label for="password" class="pf-c-form__label pf-c-form__label-text">Password</label> *
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="pf-c-input-group">
+                                    <input type="password" id="password" class="pf-c-form-control" name="password"
+                                           autocomplete="new-password"
+                                           aria-invalid=""
+                                    />
+                                    <button class="pf-c-button pf-m-control" type="button" aria-label="Show password"
+                                            aria-controls="password"  data-password-toggle
+                                            data-icon-show="fa fa-eye" data-icon-hide="fa fa-eye-slash"
+                                            data-label-show="Show password" data-label-hide="Hide password">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label for="password-confirm"
+                                       class="pf-c-form__label pf-c-form__label-text">Confirm password</label> *
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="pf-c-input-group">
+                                    <input type="password" id="password-confirm" class="pf-c-form-control"
+                                           name="password-confirm"
+                                           aria-invalid=""
+                                    />
+                                    <button class="pf-c-button pf-m-control" type="button" aria-label="Show password"
+                                            aria-controls="password-confirm"  data-password-toggle
+                                            data-icon-show="fa fa-eye" data-icon-hide="fa fa-eye-slash"
+                                            data-label-show="Show password" data-label-hide="Hide password">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+		<div class="form-group">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label for="firstName" class="pf-c-form__label pf-c-form__label-text">First name</label>
+				*
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<input type="text" id="firstName" name="firstName" value="" class="pf-c-form-control"
+		aria-invalid=""
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	/>
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label for="lastName" class="pf-c-form__label pf-c-form__label-text">Last name</label>
+				*
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<input type="text" id="lastName" name="lastName" value="" class="pf-c-form-control"
+		aria-invalid=""
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	/>
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label for="org" class="pf-c-form__label pf-c-form__label-text">Organisation</label>
+				
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<input type="text" id="org" name="org" value="" class="pf-c-form-control"
+		aria-invalid=""
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	/>
+			</div>
+		</div>
+
+
+
+
+            <div class="form-group">
+                <div id="kc-form-options" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="">
+                        <span><a href="/realms/corevalley/login-actions/authenticate?client_id=corevalley-portal&amp;tab_id=H34uKW4lODQ&amp;client_data=eyJydSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMC9hcGkvYXV0aC9jYWxsYmFjay9rZXljbG9hay1yZWdpc3RlciIsInJ0IjoiY29kZSJ9">« Back to Login</a></span>
+                    </div>
+                </div>
+
+                    <div id="kc-form-buttons" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <input class="pf-c-button pf-m-primary pf-m-block btn-lg" type="submit" value="Register"/>
+                    </div>
+            </div>
+        </form>
+        <script type="module" src="/resources/tqww8/login/keycloak/js/passwordVisibility.js"></script>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

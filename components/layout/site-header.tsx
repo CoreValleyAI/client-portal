@@ -8,6 +8,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { Button, Icon } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { AuthModal, type AuthMode } from "./auth-modal";
@@ -25,11 +26,21 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [authMode, setAuthMode] = React.useState<AuthMode | null>(null);
+  const { status } = useSession();
+  const signedIn = status === "authenticated";
 
   // Close the drawer whenever the route changes.
   React.useEffect(() => {
     setDrawerOpen(false);
   }, [pathname]);
+
+  /* middleware.ts redirects an unauthenticated /portal request to /?signin=1;
+     open the dialog for them rather than dropping them on the home page with
+     no explanation. `?error=` from a failed Auth.js callback lands here too. */
+  React.useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    if (q.has("signin") || q.has("error")) setAuthMode("signin");
+  }, []);
 
   return (
     <>
@@ -65,21 +76,35 @@ export function SiteHeader() {
                 Contact Sales
               </Button>
             </Link>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setAuthMode("signin")}
-              className="hidden sm:inline-flex"
-            >
-              Sign In
-            </Button>
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => setAuthMode("signup")}
-            >
-              Sign Up
-            </Button>
+            {signedIn ? (
+              <Link href="/portal">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  iconRight={<Icon name="arrow-right" size={15} />}
+                >
+                  Console
+                </Button>
+              </Link>
+            ) : (
+              <>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setAuthMode("signin")}
+                  className="hidden sm:inline-flex"
+                >
+                  Sign In
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={() => setAuthMode("signup")}
+                >
+                  Sign Up
+                </Button>
+              </>
+            )}
             <button
               type="button"
               aria-label="Menu"

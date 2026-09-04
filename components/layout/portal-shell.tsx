@@ -4,16 +4,23 @@
  * Portal chrome: a fixed sidebar, a glass topbar and the scrolling content
  * area. Client component because it owns the mobile sidebar and marks the
  * active route.
+ *
+ * When a NextAuth session is available, the user avatar and name are drawn
+ * from it. A sign-out button is shown in the sidebar footer.
  */
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 import { Icon, IconButton, Input } from "@/components/ui";
 import type { IconName } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { LogoLockup } from "./logo";
 
-const NAV: { heading: string; items: { href: string; label: string; icon: IconName }[] }[] = [
+const NAV: {
+  heading: string;
+  items: { href: string; label: string; icon: IconName }[];
+}[] = [
   {
     heading: "compute",
     items: [
@@ -49,9 +56,27 @@ function isActive(pathname: string, href: string) {
   return pathname.startsWith(href);
 }
 
+/** Derive two-letter initials from a name (or email) for the avatar chip. */
+function initials(name?: string | null): string {
+  const source = name?.trim();
+  if (!source) return "cv";
+  const parts = source.split(/\s+/).filter(Boolean);
+  const first = parts[0]?.[0];
+  const last = parts.length >= 2 ? parts[parts.length - 1]?.[0] : undefined;
+  if (first && last) return (first + last).toLowerCase();
+  return source.slice(0, 2).toLowerCase();
+}
+
 export function PortalShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
+  const { data: session, status } = useSession();
+  const user = session?.user;
+  /* Middleware guarantees a session before this renders, so `status` is only
+     "loading" for the first client fetch; show the chrome with a placeholder
+     identity rather than blocking the whole console on it. */
+  const loading = status === "loading";
+  const displayName = user?.name ?? user?.email ?? (loading ? "…" : "Account");
 
   React.useEffect(() => {
     setOpen(false);
@@ -128,6 +153,29 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
         </nav>
 
         <div className="mt-4 rounded-md border border-line bg-carbon-700 p-3">
+          <div className="flex items-center gap-2.5">
+            <Avatar user={user} size={30} />
+            <div className="min-w-0 flex-1">
+              <p className="truncate font-body text-[12.5px] font-medium text-ink-200">
+                {displayName}
+              </p>
+              <p className="truncate font-mono text-[10.5px] text-ink-500">
+                {user?.org ?? user?.email ?? ""}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => signOut({ callbackUrl: "/" })}
+              title="Sign out"
+              aria-label="Sign out"
+              className="cursor-pointer rounded-md p-1.5 text-ink-500 hover:bg-carbon-600 hover:text-ink-200"
+            >
+              <Icon name="sign-out" size={15} />
+            </button>
+          </div>
+
+          <div className="my-3 h-px bg-[var(--border-subtle)]" />
+
           <div className="flex items-center gap-2">
             <Icon name="region" size={14} className="text-hydro" />
             <span className="font-mono text-[11px] tracking-wide text-ink-300">
@@ -173,14 +221,51 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
           <Link
             href="/portal/settings"
             aria-label="Account settings"
-            className="flex size-8 items-center justify-center rounded-pill border border-line bg-carbon-500 font-mono text-[12px] text-hydro"
+            title={user?.email ?? undefined}
+            className="rounded-pill focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hydro"
           >
-            as
+            <Avatar user={user} size={32} />
           </Link>
         </header>
 
         <main className="flex-1 px-4 py-6 md:px-6 md:py-8">{children}</main>
       </div>
     </div>
+  );
+}
+
+/** Keycloak profile picture when the realm supplies one, initials otherwise.
+ *  A plain <img> rather than next/image: the URL is an arbitrary IdP origin,
+ *  and next.config.ts runs images unoptimized anyway. */
+function Avatar({
+  user,
+  size,
+}: {
+  user?: { name?: string | null; email?: string | null; image?: string | null };
+  size: number;
+}) {
+  const label = initials(user?.name ?? user?.email);
+
+  if (user?.image) {
+    return (
+      <img
+        src={user.image}
+        alt=""
+        width={size}
+        height={size}
+        className="rounded-pill border border-line object-cover"
+        style={{ width: size, height: size }}
+      />
+    );
+  }
+
+  return (
+    <span
+      aria-hidden="true"
+      className="flex flex-none items-center justify-center rounded-pill border border-line bg-carbon-500 font-mono text-hydro"
+      style={{ width: size, height: size, fontSize: Math.round(size * 0.38) }}
+    >
+      {label}
+    </span>
   );
 }

@@ -66,11 +66,109 @@ npm run dev          # http://localhost:3000
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run lint` | ESLint |
 | `npm run generate:basemap` | Regenerate the map data in `lib/mesh-basemap.ts` |
+| `npm run keycloak:up` | Start Keycloak + Postgres and import the `corevalley` realm |
+| `npm run keycloak:down` | Stop them (data is kept) |
+| `npm run keycloak:reset` | Drop the volume and re-import the realm from scratch |
+| `npm run keycloak:logs` | Tail the Keycloak container |
 
 > **Never run `npm run build` while a dev or production server is running.**
 > Both write to `.next`, and the result is a split-brain build that fails at
 > runtime with `Cannot find module './NNN.js'`. If you hit it:
 > `rm -rf .next && npm run build`.
+
+---
+
+## Authentication
+
+Real OIDC through **Keycloak**, wired up with **NextAuth.js v5 (Auth.js)**.
+Keycloak owns login, registration, password reset and MFA; the app only
+consumes tokens.
+
+> **Full implementation guide: [`KeyCloak_Readme.md`](KeyCloak_Readme.md)** —
+> architecture, realm reference, claim mapping, token lifecycle, operations
+> runbook, troubleshooting and the production checklist. The summary below is
+> just enough to get running.
+
+### Beta testing against a local Keycloak
+
+```bash
+npm run keycloak:up               # Keycloak 25 + Postgres, realm auto-imported
+cp .env.example .env.local        # already points at the local realm
+npm run dev
+```
+
+| | |
+|---|---|
+| Admin console | <http://localhost:8080> — `admin` / `admin` |
+| Realm | `corevalley` (imported from `keycloak/corevalley-realm.json`) |
+| Client | `corevalley-portal`, confidential, secret `corevalley-portal-dev-secret` |
+| Test user | `kaustuv@corevalley.ai` / `kaustuv123` — realm role `admin` |
+| Test user | `beta@corevalley.ai` / `beta123` — realm role `member` |
+
+The realm ships with self-registration and password reset enabled, so the
+"Create an account" button lands directly on Keycloak's Register screen.
+
+### Three modes, one session shape
+
+`lib/auth.ts` picks a mode from the environment. Every consumer —
+`middleware.ts`, server components, `useSession()` — sees the same
+`session.user` (`id`, `name`, `email`, `image`, `role`, `org`) regardless.
+
+| Mode | Trigger | Sign-in |
+|---|---|---|
+| **keycloak** | `KEYCLOAK_ISSUER` set | Real OIDC authorization-code flow |
+| **mock** | `KEYCLOAK_ISSUER` unset | Local Credentials provider returning a seeded user — lets you work on the console with nothing else running |
+| **static demo** | `NEXT_STATIC_EXPORT=true` | No server exists, so a session object is baked into `<SessionProvider>` at build time |
+
+`role` comes from Keycloak's `realm_access.roles` (`admin` if present, else
+`member`); `org` comes from a custom `org` user attribute, falling back to the
+email domain. Both are exposed through protocol mappers declared in the realm
+export, and typed by module augmentation in `types/next-auth.d.ts`.
+
+### Files
+
+| Path | Role |
+|---|---|
+| `docker-compose.yml` | Keycloak 25 + Postgres 16, `start-dev --import-realm` |
+| `keycloak/corevalley-realm.json` | Realm, client, protocol mappers, roles, seeded users |
+| `lib/auth.ts` | Provider selection, token → user mapping, refresh, RP-initiated logout |
+| `app/api/auth/[...nextauth]/route.node.ts` | The Auth.js handler |
+| `middleware.ts` | Gates `/portal/*`, redirects to `/?signin=1&callbackUrl=…` |
+| `components/layout/auth-provider.tsx` | `<SessionProvider>` + the server's auth mode as context |
+| `components/layout/auth-modal.tsx` | Hands off to the IdP — collects no credentials |
+| `types/next-auth.d.ts` | `role` / `org` module augmentation |
+
+<details>
+<summary><b>Why the auth route is named <code>route.node.ts</code></b></summary>
+
+<br>
+
+The marketing site deploys to GitHub Pages as a static export, and
+`output: "export"` refuses to build a dynamic route handler. `pageExtensions`
+in `next.config.ts` only includes `node.ts` for server builds, so the static
+build simply does not see the file — no stub handler, no conditional
+`export const dynamic`, and the server build is unaffected.
+
+Static export also drops middleware, which is why that build falls back to the
+baked-in demo session rather than pretending to gate anything.
+
+</details>
+
+<details>
+<summary><b>Access-token refresh and federated logout</b></summary>
+
+<br>
+
+Keycloak access tokens live 15 minutes; the NextAuth session lives 8 hours. The
+`jwt` callback refreshes silently 30 seconds before expiry and marks
+`session.error = "RefreshAccessTokenError"` if the refresh token is gone.
+
+`signOut()` alone would clear only the app cookie — the Keycloak SSO cookie
+would survive and the next sign-in would succeed with no prompt. The `signOut`
+event therefore calls Keycloak's `end_session_endpoint` with the stored
+`id_token_hint`.
+
+</details>
 
 ---
 

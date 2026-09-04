@@ -62,9 +62,16 @@ export function AuthModal({
   function submit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
-    // Demo session only. Replace with a real auth exchange.
-    document.cookie = "cv_demo_session=1; path=/; max-age=86400; SameSite=Lax";
-    router.push("/portal");
+    const form = new FormData(e.currentTarget as HTMLFormElement);
+    const email = form.get("email") as string;
+    const password = form.get("password") as string;
+    if (email === "kaustuv@corevalley.ai" && password === "kaustuv123") {
+      document.cookie = "cv_demo_session=1; path=/; max-age=86400; SameSite=Lax";
+      router.push("/portal");
+    } else {
+      setSubmitting(false);
+      alert("Invalid credentials. Please try again.");
+    }
   }
 
   return (

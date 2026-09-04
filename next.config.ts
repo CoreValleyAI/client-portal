@@ -4,6 +4,16 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
+  // Static export for GitHub Pages (output to /out).
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+
+  // Set basePath when deploying to a subpath (e.g. username.github.io/repo).
+  // Defaults to "" for custom domains or root deployments.
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
+
   // Keep the design-system skill folder and the archived static site out of
   // the serverless bundle and the build's file trace.
   outputFileTracingExcludes: {

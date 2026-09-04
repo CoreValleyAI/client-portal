@@ -14,6 +14,17 @@ import { profileById, skuById } from "@/lib/catalog";
 
 export const metadata = { title: "Pod" };
 
+export function generateStaticParams() {
+  return [
+    { id: "pod_9f3a21" },
+    { id: "pod_7b1c40" },
+    { id: "pod_3a8d77" },
+    { id: "pod_1e5f09" },
+    { id: "pod_6c2b13" },
+    { id: "pod_2d9a55" },
+  ];
+}
+
 export default async function PodDetailPage({
   params,
 }: {

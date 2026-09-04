@@ -7,13 +7,15 @@
  */
 import { cn } from "@/lib/cn";
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const MARKS = {
-  brandmark: { src: "/brand/cv-brandmark.svg", w: 40, h: 40 },
-  "brandmark-white": { src: "/brand/cv-brandmark-white.svg", w: 40, h: 40 },
-  wordmark: { src: "/brand/cv-wordmark-green.svg", w: 168, h: 24 },
-  "wordmark-white": { src: "/brand/cv-wordmark-white.svg", w: 168, h: 24 },
-  combinedmark: { src: "/brand/cv-combinedmark-green.svg", w: 220, h: 40 },
-  "combinedmark-white": { src: "/brand/cv-combinedmark-white.svg", w: 220, h: 40 },
+  brandmark: { src: `${BASE}/brand/cv-brandmark.svg`, w: 40, h: 40 },
+  "brandmark-white": { src: `${BASE}/brand/cv-brandmark-white.svg`, w: 40, h: 40 },
+  wordmark: { src: `${BASE}/brand/cv-wordmark-green.svg`, w: 168, h: 24 },
+  "wordmark-white": { src: `${BASE}/brand/cv-wordmark-white.svg`, w: 168, h: 24 },
+  combinedmark: { src: `${BASE}/brand/cv-combinedmark-green.svg`, w: 220, h: 40 },
+  "combinedmark-white": { src: `${BASE}/brand/cv-combinedmark-white.svg`, w: 220, h: 40 },
 } as const;
 
 export interface LogoProps {

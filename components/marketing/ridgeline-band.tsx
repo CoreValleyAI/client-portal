@@ -27,7 +27,7 @@ export function RidgelineBand({
       style={{ height }}
     >
       <img
-        src="/brand/ridgeline.v1.svg"
+        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/brand/ridgeline.v1.svg`}
         alt=""
         width={1280}
         height={360}
